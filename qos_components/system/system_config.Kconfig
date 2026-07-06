@@ -5,156 +5,156 @@
 menu "UniRTOS system platform func config"
 
 config QOSA_HAVE_MALLOC
-    bool "Support for malloc"
+    bool "Enable C standard API: malloc"
     default y
 
 config QOSA_HAVE_STRSTR
-    bool "Support for strstr"
+    bool "Enable C standard API: strstr"
     default y
 
 config QOSA_HAVE_STRCASECMP
-    bool "Support for strcasecmp"
+    bool "Enable C standard API: strcasecmp"
     default y
 
 config QOSA_HAVE_STRNCPY
-    bool "Support for strncpy"
+    bool "Enable C standard API: strncpy"
     default y
 
 config QOSA_HAVE_STRCPY
-    bool "Support for strcpy"
+    bool "Enable C standard API: strcpy"
     default y
 
 config QOSA_HAVE_STRNCMP
-    bool "Support for strncmp"
+    bool "Enable C standard API: strncmp"
     default y
 
 config QOSA_HAVE_STRCMP
-    bool "Support for strcmp"
+    bool "Enable C standard API: strcmp"
     default y
 
 config QOSA_HAVE_STRLEN
-    bool "Support for strlen"
+    bool "Enable C standard API: strlen"
     default y
 
 config QOSA_HAVE_STRNLEN
-    bool "Support for strnlen"
+    bool "Enable C standard API: strnlen"
     default y
 
 config QOSA_HAVE_STRDUP
-    bool "Support for strdup"
+    bool "Enable C standard API: strdup"
     default y
 
 config QOSA_HAVE_VSNPRINTF
-    bool "Support for vsnprintf"
+    bool "Enable C standard API: vsnprintf"
     default y
 
 config QOSA_HAVE_SNPRINTF
-    bool "Support for snprintf"
+    bool "Enable C standard API: snprintf"
     default y
 
 config QOSA_HAVE_VSPRINTF
-    bool "Support for vsprintf"
+    bool "Enable C standard API: vsprintf"
     default y
 
 config QOSA_HAVE_SPRINTF
-    bool "Support for sprintf"
+    bool "Enable C standard API: sprintf"
     default y
 
 config QOSA_HAVE_STRNCASECMP
-    bool "Support for strncasecmp"
+    bool "Enable C standard API: strncasecmp"
     default y
 
 config QOSA_HAVE_STRCHR
-    bool "Support for strchr"
+    bool "Enable C standard API: strchr"
     default y
 
 config QOSA_HAVE_STRTOUL
-    bool "Support for strtoul"
+    bool "Enable C standard API: strtoul"
     default y
 
 config QOSA_HAVE_STRTOL
-    bool "Support for strtol"
+    bool "Enable C standard API: strtol"
     default y
 
 config QOSA_HAVE_STRTOULL
-    bool "Support for strtoull"
+    bool "Enable C standard API: strtoull"
     default y
 
 config QOSA_HAVE_SSCANF
-    bool "Support for sscanf"
+    bool "Enable C standard API: sscanf"
     default y
 
 config QOSA_HAVE_STRRCHR
-    bool "Support for strrchr"
+    bool "Enable C standard API: strrchr"
     default y
 
 config QOSA_HAVE_STRTOLL
-    bool "Support for strtoll"
+    bool "Enable C standard API: strtoll"
     default y
 
 config QOSA_HAVE_STRTOD
-    bool "Support for strtod"
+    bool "Enable C standard API: strtod"
     default y
 
 config QOSA_HAVE_STRCAT
-    bool "Support for strcat"
+    bool "Enable C standard API: strcat"
     default y
 
 config QOSA_HAVE_STRNCAT
-    bool "Support for strncat"
+    bool "Enable C standard API: strncat"
     default y
 
 config QOSA_HAVE_STRTOK
-    bool "Support for strtok"
+    bool "Enable C standard API: strtok"
     default y
 
 config QOSA_HAVE_STRPBRK
-    bool "Support for strpbrk"
+    bool "Enable C standard API: strpbrk"
     default y
 
 config QOSA_HAVE_STRSPN
-    bool "Support for strspn"
+    bool "Enable C standard API: strspn"
     default y
 
 config QOSA_HAVE_STRCSPN
-    bool "Support for strcspn"
+    bool "Enable C standard API: strcspn"
     default y
 
 config QOSA_HAVE_ATOI
-    bool "Support for atoi"
+    bool "Enable C standard API: atoi"
     default y
 
 config QOSA_HAVE_ATOL
-    bool "Support for atol"
+    bool "Enable C standard API: atol"
     default y
 
 config QOSA_HAVE_ATOF
-    bool "Support for atof"
+    bool "Enable C standard API: atof"
     default y
 
 config QOSA_HAVE_SYSTEM
-    bool "Support for system"
+    bool "Enable C standard API: system"
     default y
 
 config QOSA_HAVE_RAND
-    bool "Support for rand"
+    bool "Enable C standard API: rand"
     default y
 
 config QOSA_HAVE_STRNSTR
-    bool "Support for strnstr"
+    bool "Enable C standard API: strnstr"
     default n
 
 # Under normal compilation environments, long occupies 8 bytes on linux64/ARM64, while other Win32/win64/linux32/ARM32 platforms occupy 4 bytes
 # Currently, this macro should not be enabled on the Spreadtrum Unisoc platform
 config QOSA_HAVE_SYS_TPYE64
-    bool "Support for 64-bit system type"
+    bool "Enable 64-bit system type"
     default y
     help
       This option enables support for 64-bit system types. Currently, it should not be enabled on the Spreadtrum platform.
 
 # Whether the platform supports C99 standard definitions, such as bool type int8_t/uint8_t etc.
 config QOSA_PLATFORM_SUPPORT_C99
-    bool "platform support c99"
+    bool "Enable C99 standard"
     default y
 
 # Fine-tune platform priority units. If the platform's priority definition is higher with larger values, it is negative; if smaller values mean higher priority, it is positive.
@@ -597,18 +597,18 @@ config QOSA_VFS_SEEK_END
 #/* watermark platform level configuration macro definitions             */
 #/************************************************************************/
 config QOSA_WATERMARK_ITEM_MERGE
-    bool "watermark item merge"
+    bool "Enable watermark item merge"
     default n
 
 #/************************************************************************/
 #/* psm platform differentiation features                                */
 #/************************************************************************/
 config QOSA_LPM_PSM_SUPPORT_FUNC
-    bool "Support for psm mode"
+    bool "Enable psm mode"
     default n
 
 config QOSA_LPM_SLEEP_LOG_FUNC
-    bool "Support for sleep log select"
+    bool "Enable sleep log"
     default n
 
 endmenu

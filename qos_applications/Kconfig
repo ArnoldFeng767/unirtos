@@ -6,7 +6,7 @@
 menu "UniRTOS Applications"
 
 config QAPP_UNIRTOS_STD_FUNC
-    bool "Standard AT command implementation"
+    bool "Enable AT command service"
     select QOSA_AT_PARSER_FUNC
 
 orsource "unirtos_std/Kconfig"

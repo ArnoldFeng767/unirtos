@@ -5,20 +5,20 @@
 menu "UniRTOS AT Standard"
 
 config QAPP_UNIRTOS_CAMERA_AT_FUNC
-    bool "UniRTOS Camera AT function"
+    bool "Enable Camera AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_CAMERA_FUNC
     default n
 
 config QAPP_UNIRTOS_FILE_AT_FUNC
-    bool "UniRTOS File AT function"
+    bool "Enable File AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_FILE_API_FUNC
     select QCM_UTILS_UTILS_FUNC
     default n
 
 config QAPP_UNIRTOS_TCPIP_AT_FUNC
-    bool "UniRTOS tcp/ip atc function"
+    bool "Enable TCP/IP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_SOCKET_ADP_FUNC
     select QCM_URC_FUNC
@@ -26,7 +26,7 @@ config QAPP_UNIRTOS_TCPIP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_TCPIP_NB_AT_FUNC
-    bool "UniRTOS tcp/ip nb atc function"
+    bool "Enable TCP/IP NB-IoT AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_SOCKET_ADP_FUNC
     select QCM_URC_FUNC
@@ -34,19 +34,19 @@ config QAPP_UNIRTOS_TCPIP_NB_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_SSL_AT_FUNC
-    bool "UniRTOS ssl at function"
+    bool "Enable SSL AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_VTLS_FUNC
     select QCM_FILE_API_FUNC
     default n
 
 config QAPP_UNIRTOS_SSL_AT_PSK_FUNC
-    bool "UniRTOS ssl at function"
+    bool "Enable SSL PSK AT command"
     select QAPP_UNIRTOS_SSL_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_HTTP_AT_FUNC
-    bool "UniRTOS http std at function"
+    bool "Enable HTTP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_QURL_HTTP_FUNC
     select QCM_URC_FUNC
@@ -54,7 +54,7 @@ config QAPP_UNIRTOS_HTTP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_FTP_AT_FUNC
-    bool "UniRTOS ftp std at function"
+    bool "Enable FTP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_QURL_FTP_FUNC
     select QCM_URC_FUNC
@@ -63,12 +63,12 @@ config QAPP_UNIRTOS_FTP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_GCOV_AT_FUNC
-    bool "UniRTOS gcov sta at funciton"
+    bool "Enable GCOV AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_SMTP_AT_FUNC
-    bool "UniRTOS smtp std at function"
+    bool "Enable SMTP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_QURL_SMTP_FUNC
     select QCM_UTILS_UTILS_FUNC
@@ -78,7 +78,7 @@ config QAPP_UNIRTOS_SMTP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_COAP_AT_FUNC
-    bool "UniRTOS coap at function"
+    bool "Enable CoAP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_COAP_FUNC
     select QCM_COAP_API_FUNC
@@ -87,7 +87,7 @@ config QAPP_UNIRTOS_COAP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_LWM2M_AT_FUNC
-    bool "UniRTOS lwm2m at function"
+    bool "Enable LwM2M AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_LWM2M_FUNC
     select QCM_LWM2M_FOTA_FUNC
@@ -97,7 +97,7 @@ config QAPP_UNIRTOS_LWM2M_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_ONENET_LWM2M_AT_FUN
-    bool "UniRTOS lwm2m ONENET std At function"
+    bool "Enable LwM2M ONENET AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_LWM2M_FUNC
     select QCM_LWM2M_FOTA_FUNC
@@ -106,7 +106,7 @@ config QAPP_UNIRTOS_ONENET_LWM2M_AT_FUN
     default n
 
 config QAPP_UNIRTOS_AEP_LWM2M_AT_FUN
-    bool "UniRTOS lwm2m AEP std At function"
+    bool "Enable LwM2M AEP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_LWM2M_FUNC
     select QCM_LWM2M_FOTA_FUNC
@@ -115,7 +115,7 @@ config QAPP_UNIRTOS_AEP_LWM2M_AT_FUN
     default n
 
 config QAPP_UNIRTOS_MMS_AT_FUNC
-    bool "UniRTOS mms std at function"
+    bool "Enable MMS AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_MMS_FUNC
     select QCM_FILE_API_FUNC
@@ -124,14 +124,14 @@ config QAPP_UNIRTOS_MMS_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_UNIFY_AT_FUNC
-    bool "UniRTOS unify std at function"
+    bool "Enable UNIFY AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_MQTT_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_MQTT_AT_FUNC
-    bool "UniRTOS mqtt std at function"
+    bool "Enable MQTT AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_MQTT_FUNC
     select QCM_URC_FUNC
@@ -139,21 +139,21 @@ config QAPP_UNIRTOS_MQTT_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_PING_AT_FUNC
-    bool "UniRTOS ping at std function"
+    bool "Enable PING AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_PING_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_NTP_AT_FUNC
-    bool "UniRTOS ntp at std function"
+    bool "Enable NTP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_NTP_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_WEBSOCKET_AT_FUNC
-    bool "UniRTOS websocket std at function"
+    bool "Enable websocket AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_WEBSOCKET_FUNC
     select QCM_URC_FUNC
@@ -161,14 +161,14 @@ config QAPP_UNIRTOS_WEBSOCKET_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_DMHTTP_AT_FUNC
-    bool "UniRTOS websocket std at function"
+    bool "Enable CMCC device management AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     select QCM_DMHTTP_FUNC
     default n
 
 config QAPP_UNIRTOS_UNIFY_IDENTITY_FUNC
-    bool "UniRTOS UNIFY IDENTITY function"
+    bool "Enable UNIFY IDENTITY function"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_UNIFY_AT_FUNC
     select QCM_MQTT_FUNC
@@ -176,7 +176,7 @@ config QAPP_UNIRTOS_UNIFY_IDENTITY_FUNC
     default n
 
 config QAPP_UNIRTOS_SIM_AT_FUNC
-    bool "UniRTOS SIM std At function"
+    bool "Enable SIM AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_SIM_FUNC
     select QCM_URC_FUNC
@@ -184,7 +184,7 @@ config QAPP_UNIRTOS_SIM_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_SMS_AT_FUNC
-    bool "UniRTOS SMS std At function"
+    bool "Enable SMS AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_SMS_FUNC
     select QCM_URC_FUNC
@@ -192,20 +192,20 @@ config QAPP_UNIRTOS_SMS_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_LED_AT_FUNC
-    bool "UniRTOS LED std At function"
+    bool "Enable LED AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_LED_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_LICENSE_AT_FUNC
-    bool "Quectel smtp std at function"
+    bool "Enable license management AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_LICENSE_FUNC
     default n
 
 config QAPP_UNIRTOS_NW_AT_FUNC
-    bool "UniRTOS NW std At function"
+    bool "Enable NW AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_NW_FUNC
     select QCM_URC_FUNC
@@ -214,29 +214,19 @@ config QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_USBNET_AT_FUNC
-    bool "UniRTOS USBNET std At function"
+    bool "Enable USBNET AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     default n
 
-config QAPP_UNIRTOS_MODEM_AT_BYPASS_FUNC
-    bool "UniRTOS NW MODEM AT BY PASS function"
-    select QAPP_UNIRTOS_STD_FUNC
-    default n
-
-config QAPP_UNIRTOS_MODEM_AT_BYPASS_ERRCODE_ONLY_FUNC
-    bool "UniRTOS NW MODEM AT BY PASS function convert error code only"
-    select QAPP_UNIRTOS_MODEM_AT_BYPASS_FUNC
-    default n
-
 config QAPP_UNIRTOS_QNWPREFCFG_AT_FUNC
-    bool "UniRTOS QNWPREFCFG std At function"
+    bool "Enable +QNWPREFCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_DATACALL_AT_FUNC
-    bool "UniRTOS DATACALL std At function"
+    bool "Enable DATACALL AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_DATACALL_FUNC
     select QCM_UTILS_UTILS_FUNC
@@ -244,19 +234,19 @@ config QAPP_UNIRTOS_DATACALL_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_DEV_AT_FUNC
-    bool "UniRTOS device std At function"
+    bool "Enable device AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_MODEM_DEV_FUNC
     default n
 
 config QAPP_UNIRTOS_PDP_AT_FUNC
-    bool "UniRTOS pdp at function"
+    bool "Enable PDP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_QINDCFG_AT_FUNC
-    bool "UniRTOS qindcfg at function"
+    bool "Enable +QINDCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     default n
@@ -265,16 +255,16 @@ choice QAPP_FOTA_HTTP_BACKEND
     prompt "Select HTTP backend for FOTA"
 
 config QAPP_FOTA_USE_QURL_HTTP_FUNC
-    bool "FOTA AT Use QURL HTTP"
+    bool "Enable FOTA AT command with QURL HTTP"
     select QCM_QURL_HTTP_FUNC
 
 config QAPP_FOTA_USE_MINI_HTTP_FUNC
-    bool "FOTA AT Use MINI HTTP"
+    bool "Enable FOTA AT command with MINI HTTP"
     select QCM_MINI_HTTP_FUNC
 endchoice
 
 config QAPP_UNIRTOS_FOTA_AT_FUNC
-    bool "UniRTOS FOTA AT function"
+    bool "Enable FOTA AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_FILE_API_FUNC
     select QCM_URC_FUNC
@@ -282,154 +272,154 @@ config QAPP_UNIRTOS_FOTA_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_PPP_AT_FUNC
-    bool "UniRTOS FOTA at function"
+    bool "Enable PPP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_PPP_FUNC
 
 config QAPP_UNIRTOS_PDP_KALIVE_FUNC
-    bool "UniRTOS pdp keepalive at function"
+    bool "Enable PDP keepalive AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_LBS_AT_FUNC
-    bool "UniRTOS lbs at std function"
+    bool "Enable LBS AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_LBS_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_UART_AT_FUNC
-    bool "UniRTOS UART at std function"
+    bool "Enable UART AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CSUB_CMD
-    bool "UniRTOS AT+CSUB CMD"
+    bool "Enable +CSUB AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QINF_CMD
-    bool "UniRTOS AT+QINF CMD"
+    bool "Enable +QINF AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QGMR_CMD
-    bool "UniRTOS AT+QGMR CMD"
+    bool "Enable +QGMR AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_FACTORY_AT_FUNC
-    bool "UniRTOS FACTORY at function"
+    bool "Enable FACTORY AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QPROD_CMD
-    bool "UniRTOS AT+QPROD CMD"
+    bool "Enable +QPROD AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FACTORY_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_PROD_CMD
-    bool "UniRTOS AT+PROD CMD"
+    bool "Enable +PROD AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FACTORY_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_EGMR_CMD
-    bool "UniRTOS AT+EGMR CMD"
+    bool "Enable +EGMR AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FACTORY_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QSVN_CMD
-    bool "UniRTOS AT+QSVN CMD"
+    bool "Enable +QSVN AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FACTORY_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_HVERSION_CMD
-    bool "UniRTOS AT+HVERSION CMD"
+    bool "Enable +HVERSION AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_MODULE_CMD
-    bool "UniRTOS AT+MODULE CMD"
+    bool "Enable +MODULE AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QPOWD_CMD
-    bool "UniRTOS AT+QPOWD CMD"
+    bool "Enable +QPOWD AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CBC_CMD
-    bool "UniRTOS AT+CBC CMD"
+    bool "Enable +CBC AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QTEMP_CMD
-    bool "UniRTOS AT+QTEMP CMD"
+    bool "Enable +QTEMP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QADC_CMD
-    bool "UniRTOS AT+QADC CMD"
+    bool "Enable +QADC AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QRESET_CMD
-    bool "UniRTOS AT+QRESET CMD"
+    bool "Enable +QRESET AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QDOWNLOAD_CMD
-    bool "UniRTOS AT+QDOWNLOAD CMD"
+    bool "Enable +QDOWNLOAD AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_ATO_CMD
-    bool "UniRTOS ATO CMD"
+    bool "Enable ATO AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CFUN_CMD
-    bool "UniRTOS AT+CFUN CMD"
+    bool "Enable +CFUN AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_DEV_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CCLK_CMD
-    bool "UniRTOS AT+CCLK CMD"
+    bool "Enable +CCLK AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_DEV_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_RETSET_CMD
-    bool "UniRTOS AT+RETSET CMD"
+    bool "Enable +RETSET AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QHTTPCFG_CUSTOM_HEADER_EMPTY_SHOW
-    bool "The qhttpcfg custom header is displayed when the value is empty"
+    bool "Enable display of qhttpcfg custom header when the value is empty （fixme）"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_HTTP_AT_FUNC
     select QCM_QURL_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_STYLE_REG_FUNC
-    bool "Register using the UniRTOS AT parser style at command"
+    bool "Enable registration using the UniRTOS AT parser style command （fixme）"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_HTTP_FOTA_AT_FUNC
-    bool "qfotadl cmd support http fota"
+    bool "Enable qfotadl AT command based on HTTP protocol"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_HTTP_AT_FUNC
     select QAPP_UNIRTOS_FOTA_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_FTP_FOTA_AT_FUNC
-    bool "qfotadl cmd support ftp fota"
+    bool "Enable qfotadl AT command based on FTP protocol"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FTP_AT_FUNC
     select QAPP_UNIRTOS_FOTA_AT_FUNC
@@ -437,7 +427,7 @@ config QAPP_UNIRTOS_FTP_FOTA_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_SBFOTA_AT_FUNC
-    bool "UniRTOS sbfota at std function"
+    bool "Enable SBFOTA AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_SBFOTA_FUNC
     select QCM_FILE_API_FUNC
@@ -447,23 +437,23 @@ config QAPP_UNIRTOS_SBFOTA_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_GPIO_CMD
-    bool "UniRTOS AT+QGPIOCFG CMD"
+    bool "Enable +QGPIOCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_WIFISCAN_AT_FUNC
-    bool "UniRTOS AT+QWIFISCAN CMD"
+    bool "Enable +QWIFISCAN AT command"
     select QOSA_WIFISCAN_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_QDMZ_AT_FUNC
-    bool "UniRTOS AT+QDMZ CMD"
+    bool "Enable +QDMZ AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_LPM_FUNC
-    bool "UniRTOS lpm std at function"
+    bool "Enable LPM AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_LPM_FUNC
     select QCM_URC_FUNC
@@ -471,119 +461,119 @@ config QAPP_UNIRTOS_AT_LPM_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_URC_FUNC
-    bool "UniRTOS urc std at function"
+    bool "Enable URC AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QVSIM_FUNC
-    bool "UniRTOS AT+QVSIM at function"
+    bool "Enable +QVSIM AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_QVSIM_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_FTM_AT_FUNC
-    bool "UniRTOS rftest at std function"
+    bool "Enable RFTEST AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_FTM_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_IPR_CMD
-    bool "UniRTOS AT+IPR at function"
+    bool "Enable +IPR AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_UART_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_ICF_CMD
-    bool "UniRTOS AT+ICF at function"
+    bool "Enable +ICF AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_UART_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_IFC_CMD
-    bool "UniRTOS AT+IFC at function"
+    bool "Enable +IFC AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_UART_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CBAUD_CMD
-    bool "UniRTOS AT+CBAUD at function"
+    bool "Enable +CBAUD AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_UART_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CVERSION_CMD
-    bool "UniRTOS AT+CVERSION at function"
+    bool "Enable +CVERSION AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QVERINFO_CMD
-    bool "UniRTOS AT*QVERINFO at function"
+    bool "Enable *QVERINFO AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QAPPVERSION_CMD
-    bool "UniRTOS AT+QAPPVERSION at function"
+    bool "Enable +QAPPVERSION AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QWSETMAC_CMD
-    bool "UniRTOS AT+QWSETMAC at function"
+    bool "Enable +QWSETMAC AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FACTORY_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_CMD
-    bool "UniRTOS AT+QCFG at function"
+    bool "Enable +QCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_NWSCANSEQ_CMD
-    bool "UniRTOS AT+QCFG NWSCANSEQ at function"
+    bool "Enable +QCFG NWSCANSEQ AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_AT_QCFG_CMD
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QDBGCFG_CMD
-    bool "UniRTOS AT+QDBGCFG at function"
+    bool "Enable +QDBGCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QDBGCFG_DUMPCFG_CMD
-    bool "UniRTOS AT+QDBGCFG DUMPCFG at function"
+    bool "Enable +QDBGCFG DUMPCFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_AT_QDBGCFG_CMD
     default n
 
 config QAPP_UNIRTOS_AT_QDBGCFG_IPTRACE_CMD
-    bool "UniRTOS AT+QDBGCFG IPTRACE at function"
+    bool "Enable +QDBGCFG IPTRACE AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_AT_QDBGCFG_CMD
     default n
 
 config QAPP_UNIRTOS_AT_QDBGCFG_TRACECFG_CMD
-    bool "UniRTOS AT+QDBGCFG TRACECFG at function"
+    bool "Enable +QDBGCFG TRACECFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_AT_QDBGCFG_CMD
     default n
 
 config QAPP_UNIRTOS_AT_QDBGCFG_SLEEP_DEBUG_CMD
-    bool "UniRTOS AT+QDBGCFG SLEEP/DEBUG at function"
+    bool "Enable +QDBGCFG SLEEP/DEBUG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_AT_QDBGCFG_CMD
     select QOSA_LPM_SLEEP_LOG_FUNC
     default n
 
 config QAPP_UNIRTOS_NB_AT_FUNC
-    bool "UniRTOS nb atc function"
+    bool "Enable NB-IoT AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QIND_DATASTATUS_CMD
-    bool "UniRTOS AT+QIND DATASTATUS indication function"
+    bool "Enable +QIND DATASTATUS indication AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_QINDCFG_AT_FUNC
     default n
@@ -601,7 +591,7 @@ config QAPP_UNIRTOS_AT_QIND_DATASTATUS_CMD
         5  SUSPEND_BY_DS_OPERATION
 
 config QAPP_UNIRTOS_AT_QIND_MODE_CMD
-    bool "UniRTOS AT^MODE indication function"
+    bool "Enable ^MODE indication AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_QINDCFG_AT_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
@@ -630,13 +620,13 @@ config QAPP_UNIRTOS_AT_QIND_MODE_CMD
         17  SYSINFO_SYSTEMO_SUBMODE_EUTRAN
 
 config QAPP_UNIRTOS_AT_QWRITESIM_CMD
-    bool "UniRTOS AT+QWRITESIM at function"
+    bool "Enable +QWRITESIM AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_SIM_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QAUDIO_CMD
-    bool "UniRTOS AUDIO at function"
+    bool "Enable AUDIO AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_AUDIO_STREAM_FUNC
     select QCM_URC_FUNC
@@ -645,7 +635,7 @@ config QAPP_UNIRTOS_AT_QAUDIO_CMD
 
 
 config QAPP_UNIRTOS_AT_FLASH_TEST_CMD
-    bool "UniRTOS AT+QFTEST at function"
+    bool "Enable +QFTEST AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_FLASH_TEST_FUNC
     select QCM_FILE_API_FUNC
@@ -653,156 +643,156 @@ config QAPP_UNIRTOS_AT_FLASH_TEST_CMD
     default n
 
 config QAPP_UNIRTOS_AT_QESIM_CMD
-    bool "UniRTOS AUDIO at function"
+    bool "Enable +QESIM AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_ESIM_FUNC
     default n
 
 config QAPP_UNIRTOS_QBAND_AT_FUNC
-    bool "UniRTOS QBAND at function"
+    bool "Enable +QBAND AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_CEER_AT_FUNC
-    bool "UniRTOS AT+CEER CMD"
+    bool "Enable +CEER AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_QCEER_AT_FUNC
-    bool "UniRTOS AT+QCEER CMD"
+    bool "Enable +QCEER AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_JD_AT_FUNC
-    bool "UniRTOS jamm detect atc function"
+    bool "Enable jam detect AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     default n
 
 config QAPP_UNIRTOS_GNSS_AT_FUNC
-    bool "UniRTOS gnss atc function"
+    bool "Enable GNSS AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_GNSS_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CIND_CMD
-    bool "UniRTOS AT+CIND CMD"
+    bool "Enable +CIND AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QCM_URC_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_CGEREP_AT_FUNC
-    bool "UniRTOS AT+CGEREP CMD"
+    bool "Enable +CGEREP AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_CEMODE_AT_FUNC
-    bool "UniRTOS AT+CEMODE CMD"
+    bool "Enable +CEMODE AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_NW_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_TLS1_3
-    bool "Quectel tls1.3 function"
+    bool "Enable Quectel TLS 1.3 AT command"
     select QAPP_UNIRTOS_SSL_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_DHCP_CFG_CMD
-    bool "UniRTOS AT+QCFG DHCP CFG CMD"
+    bool "Enable +QCFG DHCP CFG AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QREDDAAVN_CMD
-    bool "UniRTOS AT+QREDDAAVN CMD"
+    bool "Enable +QREDDAAVN AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_SECBOOT_AT_FUNC
-    bool "UniRTOS secboot std at function"
+    bool "Enable SecBoot AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_SECBOOT_FUNC
     default n
 
 config QAPP_OEM_LT_AT_FUNC
-    bool "UniRTOS OEM LT at function"
+    bool "Enable OEM LT AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_OEM_LT_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_PDPREACT_CMD
-    bool "UniRTOS AT+QCFG PDPREACT CMD"
+    bool "Enable +QCFG PDPREACT AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_DATACALL_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_SIMWPROTECT_CMD
-    bool "UniRTOS AT+QCFG simwpprotect CMD"
+    bool "Enable +QCFG simwpprotect AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_SIM_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QCFG_SERVICE_DOMAIN_CMD
-    bool "UniRTOS AT+QCFG servicedomain function"
+    bool "Enable +QCFG service domain AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_NW_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_CALL_CONTROL_CMD
-    bool "UniRTOS VOICE CALL AT function CMD"
+    bool "Enable VOICE CALL AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QOSA_CALL_CONTROL_FUNC
     default n
 
 config QAPP_UNIRTOS_IMS_AT_FUNC
-    bool "UniRTOS AT+QCFG IMS CMD"
+    bool "Enable +QCFG IMS AT command"
     select QAPP_UNIRTOS_STD_FUNC
     default n
 
 config QAPP_UNIRTOS_CLAT_AT_FUNC
-    bool "UniRTOS AT+QCFG CLAT CMD"
+    bool "Enable +QCFG CLAT AT command"
     depends on QAPP_UNIRTOS_STD_FUNC
     depends on QOSA_CLAT_FUNC
     default n
 
 config QAPP_UNIRTOS_SENDHEX
-    bool "Configure AT0 send ok and send fail not to be converted to numbers"
+    bool "Enable Configure the result for AT0 sending ok and sending fail not to be converted to numbers （fixme）"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_TCPIP_AT_FUNC
     default n
 
 config QAPP_UNIRTOS_AT_QFMD5_CMD
-    bool "UniRTOS qfmd5 at function"
+    bool "Enable +QFMD5 AT command"
     select QAPP_UNIRTOS_STD_FUNC
     select QAPP_UNIRTOS_FILE_AT_FUNC
     default n
 
 config UNIRTOS_FLASH_REPAIR_ERASE_TEST_AT_FUNC
-    bool "UniRTOS qftest repair erase test at function"
+    bool "Enable +QFTEST AT command"
     depends on QAPP_UNIRTOS_STD_FUNC
     depends on QOSA_FLASH_TEST_FUNC
     default n
 
 config QAPP_AUTOAPN_AT_FUNC
-    bool "UniRTOS autoapn at function"
+    bool "Enable AUTOAPN AT command"
     depends on QAPP_UNIRTOS_STD_FUNC
     depends on QOSA_AUTOAPN_FUNC
     default n
 
 config QAPP_UNIRTOS_ABNORMAL_BASESTATION_AT_FUNC
-    bool "UniRTOS abnormal basestation at function"
+    bool "Enable abnormal basestation AT command"
     depends on QAPP_UNIRTOS_STD_FUNC
     depends on QOSA_ABNORMAL_BASESTATION_FUNC
     default n
 
-if QOSA_FEATURE_ALLOW_CHANGE
-orsource "unirtos_std_config.Kconfig"
-endif
+# if QOSA_FEATURE_ALLOW_CHANGE
+# orsource "unirtos_std_config.Kconfig"
+# endif
 
 endmenu
 

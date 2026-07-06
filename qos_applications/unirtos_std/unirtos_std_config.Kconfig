@@ -119,43 +119,43 @@ config UNIRTOS_HTTP_READ_TASK_STACK_SIZE
 
 # // In TCPIP ATC function, display the actual local port instead of the customer's default configured port
 config UNIRTOS_TCPIP_SUPORT_SHOW_REAL_LOCAL_PORT
-    bool "The TCPIP ATC function displays the real local port instead of the default port configured by the customer"
+    bool "Enable TCPIP ATC displaying the real local port instead of the default port configured by the customer"
     default n
 
 
 # // Whether NTP displays extended parameters
 config UNIRTOS_NTP_SHOW_RETRY_CNT_AND_TIME
-    bool "Whether NTP displays extension parameters"
+    bool "Enable NTP displaying extension parameters"
     default n
 
 # // TCPIP ATC function, qicfg="recv/ignore" qicfg="wakeup" query display is original string or raw hexadecimal data
 # // default is hexadecimal data
 config UNIRTOS_TCPIP_RECV_IGNORE_SHOW_TYPE
-    bool "at+qicfg=recv/ignore Whether to display hexadecimal data"
+    bool "Enable at+qicfg=recv/ignore Whether to display hexadecimal data"
     default n
 
 config UNIRTOS_TCPIP_WAKEUP_SHOW_TYPE
-    bool "at+qicfg=wakeup Whether to display hexadecimal data"
+    bool "Enable at+qicfg=wakeup Whether to display hexadecimal data"
     default n
 
 # // QPING command reports URC for each timeout error
 config UNIRTOS_QPING_EVERY_TIMEOUT_REPORT_URC
-    bool "The URC of the QPING command is reported for each timeout error"
+    bool "Enable URC of the QPING command is reported for each timeout error"
     default n
 
 # // QPING RAW programming platform loses IPv4 20 bytes IPv6 40 bytes
 config UNIRTOS_RAW_SOCKET_ICMP_LOSE_IP_HEAD
-    bool "QPING RAW programming platform lost IPv4 20 bytes IPv6 40 bytes"
+    bool "Enable QPING RAW programming platform lost IPv4 20 bytes IPv6 40 bytes"
     default n
 
 # // MQTT QMTPUBEX does not support without length, if no length is entered then directly report error
 config UNIRTOS_QMTPUBEX_NOT_SUPPORT_ABSENCE_LENGTH
-    bool "MQTT QMTPUBEX does not support no length. If no length is entered, an error is reported directly"
+    bool "Enable MQTT QMTPUBEX does not support no length. If no length is entered, an error is reported directly"
     default n
 
 # // QICFG TCP retransmission configuration, consistent with Qualcomm 9x07
 config UNIRTOS_QICFG_TCP_RETRANSCFG_FOR_QUALCOMM
-    bool "QICFG TCP retransmission configuration, consistent with Qualcomm 9x07"
+    bool "Enable QICFG TCP retransmission configuration, consistent with Qualcomm 9x07"
     default n
 
 # // QFREAD can read minimum length platform differences, some platforms can support minimum length of 0
@@ -297,27 +297,27 @@ config UNIRTOS_MQTT_MAX_PUBLISH_MSG_LEN
 
 # // AT+QHTTPCFG option parameter display character style
 config UNIRTOS_QHTTPCFG_OPTION_VIEW_TYPE
-    bool "AT+QHTTPCFG option parameter display character style"
+    bool "Enable AT+QHTTPCFG option parameter display character style"
     default n
 
 # // FOTA download firmware to flash partition
 config UNIRTOS_QFOTADL_USE_FLASH_PARTITION
-    bool "Use flash partition to store the firmware image"
+    bool "Enable storing the firmware image in a flash partition"
     default n
 
 # // TCP server automatically disconnects TCP connection after shutdown
 config UNIRTOS_TCPIP_LISTENER_CLOSED_WITH_CLIENT
-    bool "TCP The TCP connection will be automatically disconnected after the server is shut down"
+    bool "Enable automatic TCP disconnect after server shutdown"
     default n
 
 # // TCP server incoming URC reported before CONNECT
 config UNIRTOS_TCPIP_LISTENER_INCOMING_REPORT_BEFORE_CONNECT
-    bool "TCP The incoming URC of the server is reported before CONNECT"
+    bool "Enable reporting incoming TCP server URC before CONNECT"
     default n
 
 # // FOTA download firmware to file root filesystem
 config UNIRTOS_QFOTADL_USE_FILE_ROOT_SYSTEM
-    bool "Use file root system to store the firmware image"
+    bool "Enable storing the firmware image in the file root system"
     default y
 
 config UNIRTOS_SSL_MFL_DEFAULT_SUPPORT
@@ -330,7 +330,7 @@ config UNIRTOS_SSL_MFL_SIZE_DEFAULT
 
 # // AT+QHTTPCFG custom header display character style
 config UNIRTOS_QHTTPCFG_CUSTOM_HEADER_VIEW_TYPE
-    bool "AT+QHTTPCFG custom header display character style"
+    bool "Enable AT+QHTTPCFG custom header display character style"
     default n
 
 # // Configure the maximum number of tcpip socket connections
@@ -382,7 +382,7 @@ config UNIRTOS_EDIT_TIMEOUT_DEFAULT
       This option allows you to enter an integer value between 1 and 180.
 
 config USE_QICSGP_IPV4_ONLY_WHEN_UNDEFINED
-    bool "Force IPv4 in AT+QICSGP when PDP profile is undefined"
+    bool "Enable Force IPv4 in AT+QICSGP when PDP profile is undefined"
     default n
     help
       Enable this option to adapt to platforms where AT+QICSGP query
@@ -393,7 +393,7 @@ config USE_QICSGP_IPV4_ONLY_WHEN_UNDEFINED
 
 
 config UNIRTOS_CGDCONT_REQUIRE_ENTRY
-    bool "Require +CGDCONT: entry in AT+CGDCONT? response"
+    bool "Enable Require +CGDCONT: entry in AT+CGDCONT? response"
     default n
     help
       If enabled, AT+CGDCONT? command will be considered valid only if
@@ -403,7 +403,7 @@ config UNIRTOS_CGDCONT_REQUIRE_ENTRY
       configuration scenario).
 
 config UNIRTOS_CGPADDR_ACTIVE_CID_ONLY
-    bool "Use only active CID list in AT+CGPADDR? response"
+    bool "Enable using only the active CID list in AT+CGPADDR? response"
     default n
     help
       Enable this to match Unisoc/eigen platform behavior, where
@@ -413,12 +413,12 @@ config UNIRTOS_CGPADDR_ACTIVE_CID_ONLY
 
 # // QURCCFG test command whether to display all string, platform differences
 config UNIRTOS_QURCCFG_SHOW_UART2_STRING
-    bool "Whether QURCCFG displays uart2 string"
+    bool "Enable QURCCFG displays uart2 string"
     default n
 
 # // QURCCFG test command whether to display all string, platform differences
 config UNIRTOS_QURCCFG_SHOW_ALL_STRING
-    bool "Whether QURCCFG displays all string"
+    bool "Enable QURCCFG displays all string"
     default n
 
 # // Configure FOTA AT corresponding task size
