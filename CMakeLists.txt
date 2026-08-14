@@ -250,8 +250,6 @@ function(discover_and_link_external_libraries)
     set(UNIRTOS_EXTERNAL_LIBRARY_TARGETS "${external_library_targets}" PARENT_SCOPE)
 endfunction()
 
-# Discover and configure external libraries early (before they're needed)
-discover_and_link_external_libraries()
 # App storage
 set(BINARY_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/bin)
 #demo PATH
@@ -677,6 +675,10 @@ if(COMMAND unirtos_collect_auto_link_component_targets)
         message(STATUS "[auto-link] component targets: ${UNIRTOS_AUTO_LINK_COMPONENT_TARGETS}")
     endif()
 endif()
+
+# External libraries can declare dependencies on SDK component targets in their
+# own CMakeLists.txt, so add them only after those SDK targets are available.
+discover_and_link_external_libraries()
 
 # Define all_components_libs.a library, used to aggregate all lib libraries from global components_libraries together
 set(target all_components_libs)
