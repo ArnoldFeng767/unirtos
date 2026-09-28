@@ -130,6 +130,11 @@
 #cmakedefine CONFIG_QOSA_MBEDTLS2_X_X_LIBRARY_FUNC
 
 /**
+ * mbedtls support
+ */
+#cmakedefine CONFIG_QOSA_MBEDTLS_SUPPORT
+
+/**
  * RTT device function module
  */
 #cmakedefine CONFIG_QOSA_RT_DEVICE_FUNC
