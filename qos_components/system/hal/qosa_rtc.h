@@ -132,6 +132,14 @@ typedef struct
 qosa_uint32_t qosa_get_system_tick_cnt(void);
 
 /**
+ * @brief Get the system running time, and count even in hibernation mode
+ *
+ * @return qosa_uint32_t
+ *       - Returns the system uptime in milliseconds
+ */
+qosa_uint32_t qosa_get_running_time(void);
+
+/**
  * @brief RTC callback function, used to receive alarm notification
  * @param None
  * @return None

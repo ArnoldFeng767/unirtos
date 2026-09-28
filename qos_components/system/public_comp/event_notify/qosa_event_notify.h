@@ -68,6 +68,7 @@ typedef enum
     QOSA_EVENT_MODEM_IMS_RING_STATUS,    /*!< Ring reports that there is an incoming call */
     QOSA_EVENT_MODEM_IMS_DISCONNECT_STATUS,    /*!< NO CARRIER reports that there is an incoming call */
     QOSA_EVENT_MODEM_IMS_CONN_ID_EVNET,        /*!< CONN ID reports that there is an incoming call */
+    QOSA_EVENT_URC_CNT_LOW,              /*!< URC CNT is a LOW notification. */
 
     QOSA_EVENT_MAX                       /* the max number of the event to be registered */
 } qosa_notify_event_e;

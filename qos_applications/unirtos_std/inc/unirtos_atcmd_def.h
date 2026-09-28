@@ -221,6 +221,10 @@
 #include "unirtos_atcmd_nb.h"
 #endif /* CONFIG_QAPP_UNIRTOS_NB_AT_FUNC */
 
+#ifdef CONFIG_QAPP_UNIRTOS_AT_QCPULOAD_CMD
+#include "unirtos_atcmd_qcpuload.h"
+#endif /* CONFIG_QAPP_UNIRTOS_AT_QCPULOAD_CMD */
+
 #ifdef CONFIG_QAPP_UNIRTOS_JD_AT_FUNC
 #include "unirtos_atcmd_jd.h"
 #endif /* CONFIG_QAPP_UNIRTOS_JD_AT_FUNC */
@@ -949,6 +953,9 @@ qosa_at_desc_t unir_img_at_desc[] = {
 #ifdef CONFIG_QOSA_EIGEN_PLATFORM_FUNC
     {"+QUPCHECK",    qstd_exec_qupcheck_cmd,           0 },
     {"+QUPDATER",    qstd_exec_qupdater_cmd,           0 },
+#ifdef CONFIG_QAPP_UNIRTOS_AT_QGPIOV_CMD
+    {"+QGPIOV",       qstd_exec_qgpiov_cmd,            0 },
+#endif /* CONFIG_QAPP_UNIRTOS_AT_QGPIOV_CMD */
 #endif /* CONFIG_QOSA_EIGEN_PLATFORM_FUNC */
 
 #ifdef CONFIG_QAPP_UNIRTOS_GNSS_AT_FUNC
@@ -988,6 +995,10 @@ qosa_at_desc_t unir_img_at_desc[] = {
     {"H",              unir_exec_ath_cmd,          0},
     {"A",              unir_exec_ata_cmd,          0},
 #endif /* CONFIG_QAPP_UNIRTOS_AT_CALL_CONTROL_CMD */
+
+#ifdef CONFIG_QAPP_UNIRTOS_AT_QCPULOAD_CMD
+    {"+QCPULOAD",      qstd_exec_qcpuload_cmd,     0},
+#endif /* CONFIG_QAPP_UNIRTOS_AT_QCPULOAD_CMD */
 
     {QOSA_NULL, QOSA_NULL, 0}
 };
