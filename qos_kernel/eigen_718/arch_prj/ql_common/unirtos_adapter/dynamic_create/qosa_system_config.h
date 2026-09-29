@@ -302,7 +302,7 @@
 /**
  * UniRTOS CAN function
  */
-/* #undef CONFIG_QOSA_CAN_SUPPORT */
+#define CONFIG_QOSA_CAN_SUPPORT
 
 /**
  * UniRTOS FOTA SIGN function
