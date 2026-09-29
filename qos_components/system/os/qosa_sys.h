@@ -449,6 +449,20 @@ int qosa_task_delete(qosa_task_t taskRef);
 int qosa_task_get_status(qosa_task_t task_ref, qosa_int32_t* status);
 
 /**
+ * @brief Get the remaining stack space of the specified thread
+ *
+ * @param[in] qosa_task_t task_ref
+ *          - Thread pointer handle
+ *
+ * @param[out] qosa_int32_t * space
+ *           - Returns the remaining stack space
+ *
+ * @return int
+ *       - Function executes successfully returns QOSA_ERROR_OK, otherwise returns a negative number
+ */
+int qosa_task_get_stack_space(qosa_task_t task_ref, qosa_int32_t* space);
+
+/**
  * @brief Thread millisecond timer
  *
  * @param[in] qosa_uint32_t ms

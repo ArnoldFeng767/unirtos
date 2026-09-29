@@ -552,4 +552,67 @@ qosa_dev_error_e qosa_dev_set_iptrace(qosa_uint32_t percent);
 
 void qosa_set_app_runing_start_addr(qosa_uint32_t qos_app_flash_start_addr, qosa_uint32_t qos_app_ram_start_addr);
 
+/*===========================================================================
+ * CPU usage monitoring unified API
+ *
+ * Cross-platform CPU loading measurement.
+ *   period_ms range: 200 ~ 60000 (ms)
+ *   The callback is invoked from non-interrupt context (worker task).
+ *   If called again while already running, the previous monitoring is
+ *   stopped first and a new one starts (last-call-wins).
+ *
+ * Error codes:
+ *   QOSA_CPU_USAGE_OK              Success
+ *   QOSA_CPU_USAGE_ERR_PARAM       Invalid parameter
+ *   QOSA_CPU_USAGE_ERR_RESOURCE    Insufficient resources
+ *   QOSA_CPU_USAGE_ERR_NOT_SUPPORT Platform not supported
+ ===========================================================================*/
+
+/** Period range constraints (ms) */
+#define QOSA_CPU_USAGE_PERIOD_MIN_MS    200U
+#define QOSA_CPU_USAGE_PERIOD_MAX_MS    60000U
+
+/** Error codes */
+typedef enum
+{
+    QOSA_CPU_USAGE_OK              = 0,   /*!< Success */
+    QOSA_CPU_USAGE_ERR_PARAM       = -1,  /*!< Invalid parameter */
+    QOSA_CPU_USAGE_ERR_RESOURCE    = -2,  /*!< Insufficient resources */
+    QOSA_CPU_USAGE_ERR_NOT_SUPPORT = -3,  /*!< Platform not supported */
+} qosa_cpu_usage_errcode_e;
+
+/**
+ * @brief CPU usage callback function type
+ *
+ * @param[in] cpu_usage_pct  CPU usage percentage for the current period (0-100)
+ */
+typedef void (*qosa_cpu_usage_cb_t)(qosa_uint8_t cpu_usage_pct);
+
+/**
+ * @brief Start CPU usage periodic monitoring
+ *
+ * Starts a periodic timer. At the end of each period, the CPU usage percentage
+ * for that period is reported through the callback. If called again while already
+ * running, the previous monitoring is stopped first and a new one starts.
+ *
+ * @param[in] period_ms  Monitoring period in milliseconds, range: 200~60000
+ * @param[in] cb         Callback function pointer, must not be NULL.
+ *                       The callback is invoked from non-interrupt context.
+ *
+ * @return  QOSA_CPU_USAGE_OK           Success
+ * @return  QOSA_CPU_USAGE_ERR_PARAM    Invalid parameter (period out of range or cb is NULL)
+ * @return  QOSA_CPU_USAGE_ERR_RESOURCE Insufficient resources (timer / task creation failed)
+ * @return  QOSA_CPU_USAGE_ERR_NOT_SUPPORT  Platform does not support this feature
+ */
+qosa_int32_t qosa_cpu_usage_start(qosa_uint32_t period_ms, qosa_cpu_usage_cb_t cb);
+
+/**
+ * @brief Stop CPU usage monitoring and release all resources
+ *
+ * Idempotent: safe to call even if monitoring is not running.
+ *
+ * @return  QOSA_CPU_USAGE_OK on success
+ */
+qosa_int32_t qosa_cpu_usage_stop(void);
+
 #endif /* __QOSA_DEV_H__ */
