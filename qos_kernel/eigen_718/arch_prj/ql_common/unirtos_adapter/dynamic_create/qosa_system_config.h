@@ -292,7 +292,7 @@
 /**
  * UniRTOS LCD function
  */
-/* #undef CONFIG_QOSA_LCD_SUPPORT */
+#define CONFIG_QOSA_LCD_SUPPORT
 
 /**
  * UniRTOS CAMERA function
