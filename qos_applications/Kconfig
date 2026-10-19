@@ -11,4 +11,16 @@ config QAPP_UNIRTOS_STD_FUNC
 
 orsource "unirtos_std/Kconfig"
 
+config UNIRTOS_APP_WERROR
+    bool "Treat user applications warnings as errors (-Werror)"
+    default n
+    help
+        When enabled, compiler warnings in user application code
+        will be treated as errors, causing the build to fail.
+        When disabled (default), warnings only serve as reminders
+        and do not prevent compilation.
+        
+        SDK internal code always treats warnings as errors
+        regardless of this setting.
+
 endmenu

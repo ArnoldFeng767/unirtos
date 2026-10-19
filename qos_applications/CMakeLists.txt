@@ -18,6 +18,11 @@ if(DEFINED EXTERNAL_QOS_APPLICATION_DIRS)
             set(external_bin_dir ${CMAKE_BINARY_DIR}/external_apps/${external_name})
             message(STATUS "Auto-discovered external application (absolute): ${external_qos_application_abs}")
             add_subdirectory(${external_qos_application_abs} ${external_bin_dir})
+            # Kconfig-driven warning-as-error control for user app code.
+            # Appends -Wno-error to override toolchain -Werror when disabled.
+            if(NOT CONFIG_UNIRTOS_APP_WERROR AND TARGET ${external_name})
+                target_compile_options(${external_name} PRIVATE -Wno-error)
+            endif()
         endif()
     endforeach()
 endif()
