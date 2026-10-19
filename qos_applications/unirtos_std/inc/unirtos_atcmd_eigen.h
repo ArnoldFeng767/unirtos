@@ -35,4 +35,9 @@ typedef struct
 
 void qstd_exec_qupcheck_cmd(qosa_at_cmd_t *cmd);
 void qstd_exec_qupdater_cmd(qosa_at_cmd_t *cmd);
+
+#ifdef CONFIG_QAPP_UNIRTOS_AT_QGPIOV_CMD
+void qstd_exec_qgpiov_cmd(qosa_at_cmd_t *cmd);
+#endif /* CONFIG_QAPP_UNIRTOS_AT_QGPIOV_CMD */
+
 #endif /* __UNIRTOS_ATCMD_QUPCHECK_H__ */

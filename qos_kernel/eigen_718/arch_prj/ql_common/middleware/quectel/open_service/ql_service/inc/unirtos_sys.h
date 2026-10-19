@@ -1706,6 +1706,9 @@ typedef int (* _api_qosa_task_delete_t)(qosa_task_t taskRef);
 extern int qosa_task_get_status(qosa_task_t task_ref, qosa_int32_t* status);
 typedef int (* _api_qosa_task_get_status_t)(qosa_task_t task_ref, qosa_int32_t* status);
 
+extern int qosa_task_get_stack_space(qosa_task_t task_ref, qosa_int32_t* space);
+typedef int (* _api_qosa_task_get_stack_space_t)(qosa_task_t task_ref, qosa_int32_t* space);
+
 extern void qosa_task_sleep_ms(qosa_uint32_t ms);
 typedef void (* _api_qosa_task_sleep_ms_t)(qosa_uint32_t ms);
 
@@ -2594,6 +2597,13 @@ typedef qosa_pinctrl_error_e (* _api_qosa_pin_set_func_t)(qosa_pin_num_e pin_num
 
 extern qosa_pinctrl_error_e qosa_pin_get_func(qosa_pin_num_e pin_num, qosa_uint8_t *func_sel);
 typedef qosa_pinctrl_error_e (* _api_qosa_pin_get_func_t)(qosa_pin_num_e pin_num, qosa_uint8_t *func_sel);
+
+extern qosa_int32_t qosa_cpu_usage_start(qosa_uint32_t period_ms, qosa_cpu_usage_cb_t cb);
+typedef qosa_int32_t (*_api_qosa_cpu_usage_start_t)(qosa_uint32_t period_ms, qosa_cpu_usage_cb_t cb);
+
+extern qosa_int32_t qosa_cpu_usage_stop(void);
+typedef qosa_int32_t (*_api_qosa_cpu_usage_stop_t)(void);
+
 #ifdef __cplusplus
 }
 #endif

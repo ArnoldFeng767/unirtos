@@ -54,6 +54,14 @@ typedef enum
     QOSA_LCD_SEM_CREATE_ERROR,                        /*!< Trying create semaphore error */
     QOSA_LCD_SEM_WAIT_ERROR,                          /*!< Trying wait semaphore error */
     QOSA_LCD_MUTEX_NOT_CREATE_ERROR,                  /*!< Trying find mutex error */
+/* dual-panel error codes */
+#ifdef CONFIG_QOSA_LCD_DUAL_PANEL
+    QOSA_LCD_PANEL_INDEX_INVALID_ERR,             /*!< Panel index invalid (dual panel) */
+    QOSA_LCD_PANEL_NOT_INIT_ERR,                  /*!< Target panel not initialized (dual panel) */
+    QOSA_LCD_PANEL_SELECT_FAIL_ERR,               /*!< Panel select callback failed (dual panel) */
+    QOSA_LCD_DYNAMIC_CFG_NOT_SUPPORT_ERR,         /*!< Dynamic LSPI config change not supported (dual panel) */
+    QOSA_LCD_PANEL_SWITCH_ROLLBACK_FAIL_ERR,      /*!< Panel switch rollback failed (dual panel) */
+#endif /* CONFIG_QOSA_LCD_DUAL_PANEL */
 } qosa_lcd_error_e;
 
 /**
@@ -98,6 +106,7 @@ typedef enum
     QOSA_LCD_OUTPUT_FORMAT_RGB444,     /*!< RGB444 format output */
     QOSA_LCD_OUTPUT_FORMAT_RGB666,     /*!< RGB666 format output */
     QOSA_LCD_OUTPUT_FORMAT_RGB888,     /*!< RGB888 format output */
+    QOSA_LCD_OUTPUT_FORMAT_GREY,       /*!< GRAY format output */
     QOSA_LCD_OUTPUT_FORMAT_MAX,
 } qosa_lcd_output_format_opt_e;
 
@@ -133,6 +142,15 @@ typedef enum
                                                         - This configuration can be the value of @ref qosa_bool_t */
     QOSA_LCD_IOCTL_HARDWARE_PRECIEW_ENABLE, /*!< Enable hardware preview mode
                                                         - This configuration can be the value of @ref qosa_lcd_set_hardware_preciew_cfg_t */
+/* dual-panel ioctl commands */
+#ifdef CONFIG_QOSA_LCD_DUAL_PANEL
+    QOSA_LCD_IOCTL_INIT_FIXED_PANELS, /*!< Init controller once + init fixed panels (dual panel)
+                                                        - This configuration can be the value of @ref qosa_lcd_fixed_panel_cfg_t */
+    QOSA_LCD_IOCTL_SWITCH_PANEL,      /*!< Atomically switch active panel (dual panel)
+                                                        - This configuration can be the value of @ref qosa_lcd_panel_switch_t */
+    QOSA_LCD_IOCTL_GET_ACTIVE_PANEL,  /*!< Get active panel index (dual panel)
+                                                        - Output value is qosa_uint8_t* */
+#endif /* CONFIG_QOSA_LCD_DUAL_PANEL */
 } qosa_lcd_ioctl_cmd_e;
 
 /**
@@ -212,11 +230,52 @@ typedef struct
     qosa_lcd_output_format_opt_e lcd_output_format; /*!<  Lcd output data format */
 
     qosa_lcd_operations_t *operation;               /*!< Lcd operation callback */
-    qosa_uint32_t          lcd_write_frequence;     /*!<  Lcd controler write rate */
-    qosa_uint32_t          lcd_read_frequence;      /*!<  Lcd controler read rate */
+    qosa_uint32_t          lcd_write_frequence;     /*!< Lcd controller write rate; LSPI divider is rounded down, so actual rate may be higher */
+    qosa_uint32_t          lcd_read_frequence;      /*!< Lcd controller read rate; LSPI divider is rounded down, so actual rate may be higher */
     qosa_lcd_reset_func_t  lcd_reset_func;          /*!<  Lcd reset function */
     qosa_lcd_spi_func_t    lcd_spi_func;            /*!<  Lcd standard SPI function */
+    qosa_spi_frame_format_e lcd_spi_frame_format; /*!< LCD standard SPI frame format configuration */
 } qosa_lcd_drv_cfg_t;
+
+/* dual-panel types: panel state / fixed config / switch param  */
+#ifdef CONFIG_QOSA_LCD_DUAL_PANEL
+
+/*!< Maximum number of fixed panels supported */
+#define QOSA_LCD_PANEL_FIXED_MAX 2
+
+/** @brief Panel select callback (board-level CS/MUX control) */
+typedef qosa_lcd_error_e (*qosa_lcd_panel_select_cb_t)(qosa_lcd_channel_e lcd_no, qosa_bool_t enable);
+
+/** @brief Fixed panel descriptor */
+typedef struct
+{
+    qosa_lcd_drv_cfg_t         *drv_cfg;  /*!< Panel driver cfg pointer (must be static lifetime) */
+    qosa_lcd_panel_select_cb_t  select;   /*!< Board-level select callback */
+} qosa_lcd_panel_desc_t;
+
+
+typedef struct
+{
+    qosa_lcd_drv_cfg_t          drv_cfg;  /*!< Panel cfg value copy (inner pointers still static) */
+    qosa_lcd_panel_select_cb_t  select;   /*!< Board-level select callback */
+    qosa_bool_t                 panel_is_init;
+} qosa_lcd_panel_state_t;
+
+/** @brief Fixed dual-panel configuration */
+typedef struct
+{
+    qosa_uint8_t panel_count;             /*!< Panel count, only 2 supported in phase 1 */
+    qosa_uint8_t default_panel;           /*!< Default active panel index (0 or 1) */
+    qosa_lcd_panel_desc_t panels[QOSA_LCD_PANEL_FIXED_MAX];
+} qosa_lcd_fixed_panel_cfg_t;
+
+/** @brief Panel switch parameter */
+typedef struct
+{
+    qosa_uint8_t panel_index;             /*!< Target panel index */
+} qosa_lcd_panel_switch_t;
+#endif /* CONFIG_QOSA_LCD_DUAL_PANEL */
+
 
 /**
  * @struct  qosa_lcd_set_hardware_preciew_cfg_t
@@ -370,7 +429,9 @@ qosa_lcd_error_e qosa_lcd_read_cmd_data(qosa_lcd_channel_e lcd_no, qosa_uint8_t 
  *          - LCD channel number selection
  *
  * @param[in] qosa_uint8_t* data
- *          - Data address that need to be sent
+ *          - Data address that needs to be sent. For LSPI DMA, the buffer address must be
+ *            4-byte aligned and its readable capacity must cover the 4-byte-aligned transfer
+ *            length; the extra tail bytes are DMA padding and are not sent to the LCD.
  *
  * @param[in] qosa_uint16_t start_x
  *          - Starting X-coordinate
