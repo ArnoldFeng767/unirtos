@@ -229,7 +229,7 @@ qosa_usbnet_err_e qosa_usbnet_set_nat_mode(qosa_uint8_t simid, qosa_bool_t nat_m
  * @param[out] nat_mode
  *          - NAT mode enable, QOSA_FALSE: disable, QOSA_TRUE: enable
  * @param[out] cid
- *          - CID that enables NAT mode
+ *          - CID that enables NAT mode, could be NULL if not needed
  * @return qosa_usbnet_err_e
  *          - Return QOSA_USBNET_ERR_OK on success, return corresponding error code on failure
  */

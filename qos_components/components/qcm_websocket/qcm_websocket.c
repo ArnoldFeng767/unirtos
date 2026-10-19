@@ -193,7 +193,7 @@ static qcm_web_err_e qcm_ws_config_init(int config_id)
     cfg_ptr->conn.subprot_en = QCM_WEB_SUBPROT_DISABLE;
     cfg_ptr->conn.subprot = QOSA_NULL;
     cfg_ptr->conn.subprot_len = 0;
-    cfg_ptr->conn.extension_en = QCM_WEB_EXTERSION_DISABLE;
+    cfg_ptr->conn.extension_en = QCM_WEB_EXTENSION_DISABLE;
     cfg_ptr->conn.extension = QOSA_NULL;
     cfg_ptr->conn.extension_len = 0;
     cfg_ptr->conn.method = QOSA_NULL;

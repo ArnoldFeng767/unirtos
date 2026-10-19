@@ -218,8 +218,8 @@ typedef enum
  */
 typedef enum
 {
-    QCM_WEB_EXTERSION_DISABLE = 0, /*!< WebSocket disables custom extensions */
-    QCM_WEB_EXTERSION_ENABLE = 1,  /*!< WebSocket enables custom extensions */
+    QCM_WEB_EXTENSION_DISABLE = 0, /*!< WebSocket disables custom extensions */
+    QCM_WEB_EXTENSION_ENABLE = 1,  /*!< WebSocket enables custom extensions */
 } qcm_web_extension_e;
 
 /**
