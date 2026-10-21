@@ -262,8 +262,8 @@ config QOSA_ABNORMAL_BASESTATION_FUNC
 #################################################################################################################
 
 choice
-    prompt "Platform function support" if QOSA_FEATURE_ALLOW_CHANGE
-    default QOSA_LINUX_PLATFORM_FUNC
+    prompt "Platform function support" 
+    default QOSA_BK7258_PLATFORM_FUNC
 
 config QOSA_LINUX_PLATFORM_FUNC
     bool "linux platform function support"
@@ -298,6 +298,15 @@ config QOSA_UIS8852_PLATFORM_FUNC
 
 config QOSA_QT2131_PLATFORM_FUNC
     bool "QT2131 paltform function support"
+
+config QOSA_BK7258_PLATFORM_FUNC
+    bool "BK 7258 platform function support"
+
+config QOSA_BK7238_PLATFORM_FUNC
+    bool "BK 7238 platform function support"
+
+config QOSA_ECR6600_PLATFORM_FUNC
+    bool "ECR6600 platform function support"
 
 endchoice
 

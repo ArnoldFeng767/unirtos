@@ -132,7 +132,7 @@ config QOSA_OPER_CN_AREA
     help
         Region Division Operator Asia including India
 config QOSA_OPER_GL_AREA
-    bool "GLOBAL OPER  Operator "
+    bool "GLOBAL OPER  Operator"
     default n
     help
         Enable global operator area configuration for QOSA,This allows the modem to use global network/PLMN settings.
