@@ -94,6 +94,8 @@ message(STATUS "CONFIG_QCM_MBEDTLS_4_LIBRARY_FUNC ------------------- ${CONFIG_Q
 message(STATUS "CONFIG_QCM_MBEDTLS_CONFIG_FILE ---------------------- ${CONFIG_QCM_MBEDTLS_CONFIG_FILE}")
 message(STATUS "CONFIG_QCM_UTILS_XMODEM_FUNC ------------------------ ${CONFIG_QCM_UTILS_XMODEM_FUNC}")
 message(STATUS "CONFIG_QCM_GNSS_FUNC -------------------------------- ${CONFIG_QCM_GNSS_FUNC}")
+message(STATUS "CONFIG_QCM_MONGOOS_LIB ------------------------------ ${CONFIG_QCM_MONGOOS_LIB}")
+message(STATUS "CONFIG_QCM_LLM_PROXY --------------------------------- ${CONFIG_QCM_LLM_PROXY}")
 
 message("\nUNIRTOS SYSTEM")
 #system

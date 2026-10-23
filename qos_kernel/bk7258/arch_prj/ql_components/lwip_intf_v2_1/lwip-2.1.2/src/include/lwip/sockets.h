@@ -38,7 +38,9 @@
 #define LWIP_HDR_SOCKETS_H
 
 #include "lwip/opt.h"
-
+#if defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) || defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC)
+#include <fcntl.h>
+#endif
 #if LWIP_SOCKET /* don't build if not configured for use in lwipopts.h */
 
 #include "lwip/ip_addr.h"
