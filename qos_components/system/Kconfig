@@ -262,7 +262,7 @@ config QOSA_ABNORMAL_BASESTATION_FUNC
 #################################################################################################################
 
 choice
-    prompt "Platform function support" if QOSA_FEATURE_ALLOW_CHANGE
+    prompt "Platform function support"
     default QOSA_LINUX_PLATFORM_FUNC
 
 config QOSA_LINUX_PLATFORM_FUNC
