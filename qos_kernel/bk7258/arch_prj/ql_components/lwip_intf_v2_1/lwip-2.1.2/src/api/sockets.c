@@ -857,6 +857,7 @@ lwip_connect(int s, const struct sockaddr *name, socklen_t namelen)
   LWIP_UNUSED_ARG(namelen);
   if (name->sa_family == AF_UNSPEC) {
     LWIP_DEBUGF(SOCKETS_DEBUG, ("lwip_connect(%d, AF_UNSPEC)\n", s));
+    BK_LOGI(NULL, "lwip_connect(%d, AF_UNSPEC)\n", s);
     err = netconn_disconnect(sock->conn);
   } else {
     ip_addr_t remote_addr;
@@ -871,6 +872,10 @@ lwip_connect(int s, const struct sockaddr *name, socklen_t namelen)
     LWIP_DEBUGF(SOCKETS_DEBUG, ("lwip_connect(%d, addr=", s));
     ip_addr_debug_print_val(SOCKETS_DEBUG, remote_addr);
     LWIP_DEBUGF(SOCKETS_DEBUG, (" port=%"U16_F")\n", remote_port));
+
+    BK_LOGI(NULL, "lwip_connect(%d, addr=%"U16_F".%"U16_F".%"U16_F".%"U16_F",port=%"U16_F")\n", s,
+            ip4_addr1_16(&remote_addr),ip4_addr2_16(&remote_addr),ip4_addr3_16(&remote_addr),ip4_addr4_16(&remote_addr),remote_port);
+ 
 
 #if LWIP_IPV4 && LWIP_IPV6
     /* Dual-stack: Unmap IPv4 mapped IPv6 addresses */
@@ -2631,7 +2636,7 @@ event_callback(struct netconn *conn, enum netconn_evt evt, u16_t len)
   }
 #if defined(CONFIG_QCM_SOCKET_ADP_FUNC)
   // Modified by Quectel: quectel qisend function support wait tcp server ack when send data to tcp server
-  BK_LOGI(NULL, "check_waiters=%d\n", check_waiters);
+  // BK_LOGI(NULL, "check_waiters=%d\n", check_waiters);
   if(cust_evt == 0)
   {
     SYS_ARCH_UNPROTECT(lev);
@@ -4103,10 +4108,11 @@ lwip_fcntl(int s, int cmd, int val)
 
       /* ensure O_RDWR for (O_RDONLY|O_WRONLY) != O_RDWR cases */
       ret |= (op_mode == (O_RDONLY | O_WRONLY)) ? O_RDWR : op_mode;
-
+      BK_LOGI(NULL, "%s[%d] ret=%x\n",__func__,__LINE__,ret);
       break;
     case F_SETFL:
       /* Bits corresponding to the file access mode and the file creation flags [..] that are set in arg shall be ignored */
+      BK_LOGI(NULL, "%s[%d] val=%x,O_NONBLOCK=%x\n",__func__,__LINE__,val,O_NONBLOCK);
       val &= ~(O_RDONLY | O_WRONLY | O_RDWR);
       if ((val & ~O_NONBLOCK) == 0) {
         /* only O_NONBLOCK, all other bits are zero */
@@ -4114,6 +4120,7 @@ lwip_fcntl(int s, int cmd, int val)
         ret = 0;
         sock_set_errno(sock, 0);
       } else {
+        BK_LOGI(NULL, "%s[%d] val=%x,set block failed!\n",__func__,__LINE__,(val & ~O_NONBLOCK));
         sock_set_errno(sock, ENOSYS); /* not yet implemented */
       }
       break;
@@ -4668,7 +4675,7 @@ static int qcm_sock_async_select_handler(struct lwip_sock *sock)
   int new_mask = 0;
 
   // LWIP_DEBUGF(1, (0x0, "rcvevent=%d sendevent=%d", sock->rcvevent, sock->sendevent));
-  BK_LOGI(NULL, "rcvevent=%d sendevent=%d\n", sock->rcvevent, sock->sendevent);
+  // BK_LOGI(NULL, "rcvevent=%d sendevent=%d\n", sock->rcvevent, sock->sendevent);
   // lwip底层  上报    select 事件
   if ((sock->rcvevent > 0) || (sock->sendevent != 0) || (sock->errevent != 0))
   {

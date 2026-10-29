@@ -282,7 +282,7 @@ netif_add(struct netif *netif,
 #if LWIP_IPV6
   s8_t i;
 #endif
-
+  BK_LOGI(NULL,"%s\n",__func__);
   LWIP_ASSERT_CORE_LOCKED();
 
 #if LWIP_SINGLE_NETIF

@@ -1957,6 +1957,7 @@ int net_eth_start()
 	int ret;
 	uint8_t mac[BK_MAC_ADDR_LEN];
 
+	BK_LOGI(NULL,"%s\n",__func__);
 	miiphy_init();
 
 	ieee8023_phy_init();

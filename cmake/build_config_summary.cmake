@@ -138,6 +138,8 @@ message(STATUS "CONFIG_QOSA_FLASH_TEST_FUNC -------------------------- ${CONFIG_
 message(STATUS "CONFIG_QOSA_NBIOT_CUST_FUNC -------------------------- ${CONFIG_QOSA_NBIOT_CUST_FUNC}")
 message(STATUS "CONFIG_QOSA_LPM_PSM_SUPPORT_FUNC --------------------- ${CONFIG_QOSA_LPM_PSM_SUPPORT_FUNC}")
 message(STATUS "CONFIG_QOSA_SECBOOT_FUNC ----------------------------- ${CONFIG_QOSA_SECBOOT_FUNC}")
+message(STATUS "CONFIG_QCM_MONGOOS_LIB ---------------------------- ---${CONFIG_QCM_MONGOOS_LIB}")
+message(STATUS "CONFIG_QCM_LLM_PROXY ----------------------------------${CONFIG_QCM_LLM_PROXY}")
 
 #platform
 message("\nUNIRTOS PLATFORM")

@@ -24,7 +24,7 @@
 /**
  * Virtual file system function module
  */
-/* #undef CONFIG_QOSA_VFS_FILESYSTEM_FUNC */
+#define CONFIG_QOSA_VFS_FILESYSTEM_FUNC
 
 /**
  * Bidirectional linked table manipulation functions
@@ -34,7 +34,7 @@
 /**
  * Data service manger function
  */
-/* #undef CONFIG_QOSA_BUFFER_BLOCK_FUNC */
+#define CONFIG_QOSA_BUFFER_BLOCK_FUNC
 
 /**
  * SSL third-party library support
@@ -89,7 +89,7 @@
 /**
  * UniRTOS wifi scan function
  */
-/* #undef CONFIG_QOSA_WIFISCAN_FUNC */
+#define CONFIG_QOSA_WIFISCAN_FUNC
 
 /**
  * UniRTOS modem WIFI function support

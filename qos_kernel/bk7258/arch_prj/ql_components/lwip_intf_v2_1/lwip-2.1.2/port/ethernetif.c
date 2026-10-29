@@ -359,7 +359,7 @@ static bk_err_t low_level_init(struct netif *netif)
   struct eth_mac_priv *priv;
 
   LWIP_LOGD("ETH %s start XXX\n", __func__);
-
+  BK_LOGI(NULL,"ETH %s start XXX\n",__func__);
   // Allocate eth_mac priv data
   priv = heth.priv = os_zalloc(sizeof(struct eth_mac_priv));
   if (!heth.priv) {
@@ -393,7 +393,7 @@ static bk_err_t low_level_init(struct netif *netif)
   netif->hwaddr[3] =  heth.Init.MACAddr[3];
   netif->hwaddr[4] =  heth.Init.MACAddr[4];
   netif->hwaddr[5] =  heth.Init.MACAddr[5];
-
+  BK_LOGI(NULL,"mac:%x:%x:%x:%x:%x:%x\n",  netif->hwaddr[0], netif->hwaddr[1], netif->hwaddr[2], netif->hwaddr[3], netif->hwaddr[4], netif->hwaddr[5]);
   /* maximum transfer unit */
   netif->mtu = ETH_MAX_PAYLOAD;
 
@@ -422,6 +422,7 @@ static bk_err_t low_level_init(struct netif *netif)
     ret = mdio_register(priv->mii);
     if (ret < 0) {
       BK_LOGD(NULL, "mdio_register() failed: %d", ret);
+      BK_LOGE(NULL, "mdio_register() failed: %d", ret);
       goto fail;
     }
   }
@@ -432,6 +433,7 @@ static bk_err_t low_level_init(struct netif *netif)
     priv->phy = phy_connect(priv->mii, addr, netif, PHY_INTERFACE_MODE_RMII);  // for BK7236, RMII, for BK7286, RGMII
     if (!priv->phy) {
       BK_LOGD(NULL, "phy_connect() failed\n");
+      BK_LOGE(NULL, "phy_connect() failed\n");
       ret = -1;
       goto fail;
     }
@@ -915,7 +917,7 @@ static err_t low_level_output_arp_off(struct netif *netif, struct pbuf *q, const
 err_t ethernetif_init(struct netif *netif)
 {
   LWIP_ASSERT("netif != NULL", (netif != NULL));
-
+  BK_LOGI(NULL,"%s\n",__func__);
 #if LWIP_NETIF_HOSTNAME
   /* Initialize interface hostname */
   netif->hostname = "lwip";
@@ -1064,9 +1066,11 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 {
   //LWIP_LOGD("HW DeviceID: 0x%x\n", REG_READ((ETH_BASE + 0x800*4)));
   //LWIP_LOGD("HW VersionID: 0x%x\n", REG_READ((ETH_BASE + 0x801*4)));
-
+  BK_LOGI(NULL,"HW DeviceID: 0x%x\n", REG_READ((ETH_BASE + 0x800*4)));
+  BK_LOGI(NULL,"HW VersionID: 0x%x\n", REG_READ((ETH_BASE + 0x801*4)));
   // GPIO PinMUX: group0(27, 29-39), or group2(46-55)
   // FIXME: BK7236, use dts instead of hard coding.
+  BK_LOGI(NULL, "%s\n", __func__);
 #ifdef CONFIG_ETH_PIN_GROUP0
   gpio_dev_unmap(GPIO_27);  // PHY INT
   gpio_dev_unmap(GPIO_29);  // MDC

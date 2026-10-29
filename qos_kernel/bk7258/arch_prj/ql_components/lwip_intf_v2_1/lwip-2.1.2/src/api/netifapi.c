@@ -73,6 +73,7 @@ netifapi_do_netif_add(struct tcpip_api_call_data *m)
                   msg->msg.add.state,
                   msg->msg.add.init,
                   msg->msg.add.input)) {
+    BK_LOGI(NULL,"%s\n",__func__);
     return ERR_IF;
   } else {
     return ERR_OK;
