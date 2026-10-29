@@ -56,7 +56,13 @@ typedef enum
     QOSA_SPI_CLK_6_5MHZ = 6500000,   /*!< Clock frequency: 6.5M */
     QOSA_SPI_CLK_13MHZ = 13000000,   /*!< Clock frequency: 13M */
     QOSA_SPI_CLK_26MHZ = 26000000,   /*!< Clock frequency: 26M */
-    QOSA_SPI_CLK_52MHZ = 52000000,   /*!< Clock frequency: 52M */
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))   
+
+    QOSA_SPI_CLK_30MHZ = 30000000,   /*!< BK7258 only: 30 MHz */
+    QOSA_SPI_CLK_32MHZ = 32000000,   /*!< BK7258 only: 32 MHz */
+    QOSA_SPI_CLK_40MHZ = 40000000,   /*!< BK7258 only: 40 MHz */
+    QOSA_SPI_CLK_52MHZ = 52000000,   /*!< Clock frequency: 52M, BK7258 not supported */
+#endif
 } qosa_spi_clk_e;
 
 /**
