@@ -94,6 +94,8 @@ message(STATUS "CONFIG_QCM_MBEDTLS_4_LIBRARY_FUNC ------------------- ${CONFIG_Q
 message(STATUS "CONFIG_QCM_MBEDTLS_CONFIG_FILE ---------------------- ${CONFIG_QCM_MBEDTLS_CONFIG_FILE}")
 message(STATUS "CONFIG_QCM_UTILS_XMODEM_FUNC ------------------------ ${CONFIG_QCM_UTILS_XMODEM_FUNC}")
 message(STATUS "CONFIG_QCM_GNSS_FUNC -------------------------------- ${CONFIG_QCM_GNSS_FUNC}")
+message(STATUS "CONFIG_QCM_MONGOOS_LIB ------------------------------ ${CONFIG_QCM_MONGOOS_LIB}")
+message(STATUS "CONFIG_QCM_LLM_PROXY --------------------------------- ${CONFIG_QCM_LLM_PROXY}")
 
 message("\nUNIRTOS SYSTEM")
 #system
@@ -136,6 +138,8 @@ message(STATUS "CONFIG_QOSA_FLASH_TEST_FUNC -------------------------- ${CONFIG_
 message(STATUS "CONFIG_QOSA_NBIOT_CUST_FUNC -------------------------- ${CONFIG_QOSA_NBIOT_CUST_FUNC}")
 message(STATUS "CONFIG_QOSA_LPM_PSM_SUPPORT_FUNC --------------------- ${CONFIG_QOSA_LPM_PSM_SUPPORT_FUNC}")
 message(STATUS "CONFIG_QOSA_SECBOOT_FUNC ----------------------------- ${CONFIG_QOSA_SECBOOT_FUNC}")
+message(STATUS "CONFIG_QCM_MONGOOS_LIB ---------------------------- ---${CONFIG_QCM_MONGOOS_LIB}")
+message(STATUS "CONFIG_QCM_LLM_PROXY ----------------------------------${CONFIG_QCM_LLM_PROXY}")
 
 #platform
 message("\nUNIRTOS PLATFORM")
@@ -147,3 +151,6 @@ message(STATUS "CONFIG_QOSA_QCX217_PLATFORM_FUNC --------------------- ${CONFIG_
 message(STATUS "CONFIG_QOSA_ASR1903_PLATFORM_FUNC -------------------- ${CONFIG_QOSA_ASR1903_PLATFORM_FUNC}")
 message(STATUS "CONFIG_QOSA_EIGEN718_PLATFORM_FUNC ------------------- ${CONFIG_QOSA_EIGEN718_PLATFORM_FUNC}")
 message(STATUS "CONFIG_QOSA_ASR1805_PLATFORM_FUNC -------------------- ${CONFIG_QOSA_ASR1805_PLATFORM_FUNC}")
+message(STATUS "CONFIG_QOSA_BK7258_PLATFORM_FUNC --------------------- ${CONFIG_QOSA_BK7258_PLATFORM_FUNC}")
+message(STATUS "CONFIG_QOSA_BK7238_PLATFORM_FUNC --------------------- ${CONFIG_QOSA_BK7238_PLATFORM_FUNC}")
+message(STATUS "CONFIG_QOSA_ECR6600_PLATFORM_FUNC -------------------- ${CONFIG_QOSA_ECR6600_PLATFORM_FUNC}")

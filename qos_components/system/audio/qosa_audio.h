@@ -128,6 +128,9 @@ typedef enum {
     QOSA_AUDIO_OUTPUT_EXTERNAL,   /*!< Set as external codec output */
     QOSA_AUDIO_OUTPUT_INTERNAL,   /*!< Set as built-in codec output */
     QOSA_AUDIO_OUTPUT_PWM,        /*!< Set to output in PWM mode */
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))   
+    QOSA_AUDIO_OUTPUT_SPI,        /*!< Set to output in SPI mode */
+#endif
     QOSA_AUDIO_OUTPUT_MAX,
 } qosa_audio_output_type_e;
 
@@ -158,6 +161,32 @@ typedef struct
 } qosa_aud_cb_param_t;
 
 typedef void (*qosa_aud_callback_t)(qosa_aud_cb_param_t *param);
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))   
+/**
+ * @struct  qosa_aud_stream_opt_t
+ * @brief   Configuration for using audio stream playback
+ */
+typedef struct qosa_aud_stream_opt
+{
+    union
+    {
+        qosa_uint64_t   options;
+        struct
+        {
+            /* bit0~bit11,  reserved, use on other platforms */
+            qosa_uint32_t   reserved1       : 12;
+            /* bit12~bit15, pcm pre-filled mute frames size(each frame = 20 ms); default 0 means no pre-fill */
+            qosa_uint32_t   mute_frames     : 4;
+            /* bit16~bit20, reserved */
+            qosa_uint32_t   reserved2       : 5;
+            /* bit21~bit52, reserved, use on other platforms */
+            qosa_uint32_t   reserved3       : 32;
+            /* bit53~bit64, reserved, use on other platforms */
+            qosa_uint32_t   reserved4       : 11;
+        };
+    };
+}qosa_aud_stream_opt_t;
+#endif
 /**
  * @struct  qosa_aud_stream_cfg_t
  * @brief audio Data flow parameter configuration structure
@@ -171,7 +200,11 @@ typedef struct
     qosa_aud_fmt_e      format;    /*!< stream format */
     qosa_aud_callback_t callback;  /*!< callback function */
     qosa_uint8_t       *ctx;       /*!< Corresponding to the ctx in qosa_aud_cb_param_t */
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))   
+    qosa_aud_stream_opt_t   options;   /*!< Use bits 12 to 15 to represent the number of pre-filled silent frames. */
+#else
     qosa_uint64_t       options;   /*!< reseved */
+#endif
 } qosa_aud_stream_cfg_t;
 
 /**
@@ -279,7 +312,21 @@ qosa_int32_t qosa_aud_driver_register(osa_aud_drv_cb_t *ops);
  *         - Other error codes: Return the corresponding error code based on the specific operation.
  */
 qosa_aud_errcode_e qosa_aud_set_volume(qosa_aud_vol_level_e volume);
-
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))   
+/**
+ * @brief Set linear volume function
+ *
+ * @param[in] qosa_bool_t en
+ *         - Enable linear volume
+ * @param[in] qosa_int16_t level
+ *         - Linear volume level
+ *
+ * @return qosa_aud_errcode_e Error code
+ *         - QOSA_AUD_INVALID_PARAM: Invalid parameter
+ *         - Other error codes: Return corresponding error code based on specific operation
+ */
+qosa_aud_errcode_e qosa_aud_apply_pcm_gain(qosa_bool_t en, qosa_int16_t level);
+#endif
 /**
  * @brief Obtain volume level
  *

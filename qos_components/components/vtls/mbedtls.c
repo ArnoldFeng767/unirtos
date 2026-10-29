@@ -183,10 +183,12 @@ static void mbedtls_set_version_switch(qcm_ssl_config_t *conf, struct mbed_ssl_b
                 mbedtls_ver_min = MBEDTLS_SSL_MINOR_VERSION_3;
                 mbedtls_ver_max = MBEDTLS_SSL_MINOR_VERSION_3;
                 break;
-            case QCM_SSL_VERSION_ALL:
+#if !(defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC)) 
+             case QCM_SSL_VERSION_ALL:
                 mbedtls_ver_min = MBEDTLS_SSL_MINOR_VERSION_0;
                 mbedtls_ver_max = MBEDTLS_SSL_MINOR_VERSION_3;
                 break;
+#endif
             default:
                 break;
         }
@@ -223,10 +225,12 @@ static void mbedtls_set_version_switch(qcm_ssl_config_t *conf, struct mbed_ssl_b
                 mbedtls_ver_min = MBEDTLS_SSL_VERSION_TLS1_2;
                 mbedtls_ver_max = MBEDTLS_SSL_VERSION_TLS1_2;
                 break;
-            case QCM_SSL_VERSION_ALL:
+#if !(defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC)) 
+             case QCM_SSL_VERSION_ALL:
                 mbedtls_ver_min = MBEDTLS_SSL_VERSION_TLS1_2;
                 mbedtls_ver_max = MBEDTLS_SSL_VERSION_TLS1_3;
                 break;
+#endif
             case QCM_SSL_VERSION_5:  //TLS1.3
                 mbedtls_ver_min = MBEDTLS_SSL_VERSION_TLS1_3;
                 mbedtls_ver_max = MBEDTLS_SSL_VERSION_TLS1_3;
@@ -263,10 +267,12 @@ static void mbedtls_set_version_switch(qcm_ssl_config_t *conf, struct mbed_ssl_b
                 mbedtls_ver_min = MBEDTLS_SSL_MINOR_VERSION_3;
                 mbedtls_ver_max = MBEDTLS_SSL_MINOR_VERSION_3;
                 break;
-            case QCM_SSL_VERSION_ALL:
+#if !(defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC)) 
+             case QCM_SSL_VERSION_ALL:
                 mbedtls_ver_min = MBEDTLS_SSL_MINOR_VERSION_3;
                 mbedtls_ver_max = MBEDTLS_SSL_MINOR_VERSION_4;
                 break;
+#endif
             case QCM_SSL_VERSION_5:  //TLS1.3
                 mbedtls_ver_min = MBEDTLS_SSL_MINOR_VERSION_4;
                 mbedtls_ver_max = MBEDTLS_SSL_MINOR_VERSION_4;
@@ -797,6 +803,8 @@ static qcm_vtls_result_status_e mbed_connect_step1(qcm_ssl_connect_data_t *conns
     }
 #endif /* MBEDTLS_SSL_MAX_FRAGMENT_LENGTH */
     QLOGV("  . Loading the CA root certificate and Set ssl config ...");
+
+
 #ifdef MBEDTLS_KEY_EXCHANGE_SOME_PSK_ENABLED
     if (conf->psk_enable == QCM_SSL_PSK_ENABLED)
     {
@@ -825,6 +833,20 @@ static qcm_vtls_result_status_e mbed_connect_step1(qcm_ssl_connect_data_t *conns
 
             if (psk_len > 0)
             {
+#if defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) 
+#if defined(MBEDTLS_SSL_HANDSHAKE_WITH_PSK_ENABLED)
+              psk_ret = mbedtls_ssl_conf_psk(
+                    &backend->config,
+                    (const qosa_uint8_t *)psk_key,
+                    psk_len,
+                    (qosa_uint8_t *)conf->psk_identity,
+                    qosa_strlen(conf->psk_identity)
+                );  
+#else
+             psk_ret = MBEDTLS_ERR_SSL_FEATURE_UNAVAILABLE;
+#endif
+#else
+      
                 psk_ret = mbedtls_ssl_conf_psk(
                     &backend->config,
                     (const qosa_uint8_t *)psk_key,
@@ -832,6 +854,7 @@ static qcm_vtls_result_status_e mbed_connect_step1(qcm_ssl_connect_data_t *conns
                     (qosa_uint8_t *)conf->psk_identity,
                     qosa_strlen(conf->psk_identity)
                 );
+#endif
                 if (psk_ret != 0)
                 {
                     QLOGD("failed mbedtls set psk %d", psk_ret);
@@ -1132,8 +1155,8 @@ static qcm_vtls_result_status_e mbed_connect_step1(qcm_ssl_connect_data_t *conns
         if (!hostname || mbedtls_ssl_set_hostname(&backend->ssl, hostname))
         {
             /* mbedtls_ssl_set_hostname() sets the name to use in CN/SAN checks and
-         the name to set in the SNI extension. So even if curl connects to a
-         host specified as an IP address, this function must be used. */
+            the name to set in the SNI extension. So even if curl connects to a
+            host specified as an IP address, this function must be used. */
             QLOGE("Failed to set SNI");
             return QCM_VTLS_SSL_CONNECT_ERR;
         }
@@ -1189,7 +1212,9 @@ exit:
 static qcm_vtls_result_status_e mbed_connect_step2(qcm_ssl_connect_data_t *connssl)
 {
     int                           ret = 0;
+#if defined(MBEDTLS_TIMING_C) && defined(MBEDTLS_SSL_PROTO_DTLS)
     qosa_uint32_t                 fin_ms = 0;
+#endif
     struct mbed_ssl_backend_data *backend = (struct mbed_ssl_backend_data *)connssl->backend;
 
     //If the IO is a blocking function, this function returns with the result immediately.
@@ -1200,11 +1225,15 @@ static qcm_vtls_result_status_e mbed_connect_step2(qcm_ssl_connect_data_t *conns
         if (connssl->ssl_config.transport == MBEDTLS_SSL_TRANSPORT_DATAGRAM)
         {
 #if defined(MBEDTLS_TIMING_C) && defined(MBEDTLS_SSL_PROTO_DTLS)
+#if (defined(CONFIG_QOSA_BK7238_PLATFORM_FUNC) ||defined(CONFIG_QOSA_BK7258_PLATFORM_FUNC) || defined(CONFIG_QOSA_ECR6600_PLATFORM_FUNC))
+            fin_ms = backend->timer.MBEDTLS_PRIVATE(fin_ms);
+#else
             #if defined(CONFIG_QCM_MBEDTLS_4_LIBRARY_FUNC) || defined(CONFIG_QOSA_MBEDTLS3_X_X_LIBRARY_FUNC)
             fin_ms = backend->timer.MBEDTLS_PRIVATE(fin_ms);
             #else /* CONFIG_QCM_MBEDTLS_4_LIBRARY_FUNC */
             fin_ms = backend->timer.fin_ms;
             #endif /* CONFIG_QCM_MBEDTLS_4_LIBRARY_FUNC */
+#endif
             QLOGD("connecting_state %d fin_ms %d", connssl->connecting_state, fin_ms);
 
             if (connssl->connecting_state != QCM_SSL_CONNECT_DONE && qosa_timer_is_running(connssl->dtls_retransmission_timer) == QOSA_FALSE)
@@ -1517,9 +1546,6 @@ static void qcm_mbedtls_close(qcm_ssl_connect_data_t *connssl)
     mbedtls_ssl_free(&backend->ssl);
     mbedtls_ctr_drbg_free(&backend->ctr_drbg);
     mbedtls_entropy_free(&backend->entropy);
-#ifdef MBEDTLS_SSL_PROTO_TLS1_3
-    mbedtls_psa_crypto_free();
-#endif
 }
 
 /**
